@@ -7,6 +7,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Date;
 
 import android.app.Activity;
 import android.content.Context;
@@ -75,7 +76,9 @@ public class MainActivity extends Activity {
 		// Prepare data storage
 		File directory = Environment
 				.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS);
-		String name = "AllData_" + System.currentTimeMillis() + ".csv";
+		SimpleDateFormat sdf = new SimpleDateFormat("MMMddyyyyHHmm");
+        	Date currentdate = new Date(System.currentTimeMillis());
+		String name = "AllData_" + sdf.format(currentDate) + ".csv";
 		File filename = new File(directory, name);
 		try {
 			file = new BufferedWriter(new FileWriter(filename));
@@ -182,7 +185,9 @@ public class MainActivity extends Activity {
 				line += "," + value;
 			}
 		}
-		line = Long.toString(System.currentTimeMillis()) + "," + tag + line
+		SimpleDateFormat sdf = new SimpleDateFormat("MMMddyyyyHHmm");
+        	Date currentdate = new Date(System.currentTimeMillis());
+		line = sdf.format(currentDate) + "," + tag + line
 				+ "\n";
 
 		try {
